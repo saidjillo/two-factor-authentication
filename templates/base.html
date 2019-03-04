@@ -24,51 +24,44 @@
 <body>
         <!-- nav -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light  header-top">
-                <a href="{% url 'home' %}" class="navbar-brand">
-                  Home
-                </a>
-                <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#ourGameshopNavbar" aria-controls="ourGameshopNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
+            <a href="{% url 'home' %}" class="navbar-brand">
+                Home
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#ourGameshopNavbar" aria-controls="ourGameshopNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <ul class="navbar-nav d-flex flex-row justify-content-between container">
+                
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="nav-link" href="{% url 'accounts:logout_view' %}">Logout</a>
+                </li>
+                
+            
+                {% else %}
+                <li>
+                    <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a>
+                </li>
+                
+                <li>
+                    <a class="dropdown-item" href="{% url 'accounts:signup' %}">Signup</a>
+                </li>
+                
+                {% endif %} 
+                
+
         
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="dropdown-item" href="{% url 'accounts:home' username=user.username %}">Dashboard</a>
+                </li>  
+                {% endif %} 
     
-              
-    
-                  <ul class="navbar-nav d-flex flex-row justify-content-between container">
-                          
-                    
-                    
-                            {% if user.is_authenticated %}
-                            <li>
-                                <a class="nav-link" href="{% url 'accounts:logout_view' %}">Logout</a>
-                            </li>
-                          
-                        
-                            {% else %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a>
-                            </li>
-                            
-                            <li>
-                                <a class="dropdown-item" href="{% url 'accounts:signup' %}">Signup</a>
-                            </li>
-                            
-                            {% endif %} 
-                         
-
-                   
-                            {% if user.is_authenticated %}
-                            <li>
-                            <a class="dropdown-item" href="{% url 'accounts:home' username=user.username %}">Dashboard</a>
-                        </li>  
-                            {% endif %} 
-                   
-
-                  </ul>
+            </ul>
               
            
-              </nav>
+        </nav>
         <!-- nav ends -->
     {% block content %}
     {% endblock %}
