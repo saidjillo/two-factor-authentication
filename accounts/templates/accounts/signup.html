@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create free account and enjoy 
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col col-md-8 offset-md-2">
+     
+                    <h1>Create a free account</h1>
+                    <form method="POST" class="mb-3" enctype="multipart/form-data">
+                            {% csrf_token %}
+                           
+                            {{form.errors}}
+                            
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username">username</label>
+                                    {{form.username}}                     
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name">first name</label>
+                                    {{form.first_name}}                     
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name">last name</label>
+                                    {{form.last_name}}                     
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="email">email</label>
+                                    {{form.email}}                     
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="password1">password</label>
+                                    {{form.password1}}                     
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="password2">confirm password</label>
+                                    {{form.password2}}                     
+                                </div>
+
+                            </div>
+                          
+                        <input type="submit" class="btn btn-primary" value="Create Account">
+                    </form>
+             
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
