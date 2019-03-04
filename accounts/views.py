@@ -53,5 +53,16 @@ def logout_view(request):
     return redirect("accounts:login")
 
 
+def dashboard_view(request, username):
+    if request.method == "POST":
+        return HttpResponse(status=500)
 
+    if request.method == "GET":
+        user = request.user
+    
+    if not user.is_authenticated:
+        return redirect('accounts:login')
+    
+
+    return render(request, 'accounts/dashboard.html')
 
